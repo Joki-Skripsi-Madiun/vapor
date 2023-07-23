@@ -17,104 +17,24 @@
                 </div>
             </div>
             <div class="row column4 graph">
-                <!-- Gallery section -->
-                <div class="col-md-6">
+
+                <!-- progress bar -->
+                <div class="col-md-12">
                     <div class="white_shd full margin_bottom_30">
                         <div class="full graph_head">
-                            <div class="heading1 margin_0">
-                                <h2>Barang</h2>
-                            </div>
-                        </div>
-                        <div class="full gallery_section_inner padding_infor_info">
                             <div class="row">
-                                <?php foreach ($joinbarang as $a) : ?>
-                                    <div class="col-sm-6 col-md-6 margin_bottom_30">
-                                        <div class="column">
-                                            <a data-fancybox="gallery" href="<?php echo base_url(); ?>/img/<?= $a['foto']; ?>"><img class="img-responsive" src="<?php echo base_url(); ?>/img/<?= $a['foto']; ?>" alt="#" /></a>
-                                        </div>
-                                        <div class="heading_section">
-                                            <h4><?= $a['nama_barang']; ?></h4>
-                                        </div>
-                                    </div>
-                                <?php endforeach ?>
+                                <div class="col-9">
+                                    <div class="heading1 margin_0">
+                                        <h2>Data Transaksi
 
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="dark_bg full margin_bottom_30">
-                        <div class="full graph_head">
-                            <div class="heading1 margin_0">
-                                <h2>Tambah Transaksi</h2>
-                            </div>
-                        </div>
-                        <div class="full graph_revenue">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="content testimonial">
-                                        <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
-                                            <form class="row g-3" action="<?= base_url(); ?>/barang/save" method="post" enctype="multipart/form-data">
-                                                <div class="col-12">
-                                                    <label for="exampleInputEmail1" class="form-label">Nama Pembeli</label>
-                                                    <select class="form-control" name="id_user">
-                                                        <option selected>Open this select menu</option>
-                                                        <?php foreach ($user as $k) : ?>
-                                                            <option value="<?= $k['id_user'] ?>"><?= $k['nama'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-sm-4 col-md-3 margin_bottom_30">
-
-
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <table id="data1" class="table">
-                                                        <thead>
-
-                                                            <tr>
-                                                                <th>No</th>
-
-                                                                <th>Nama Barang</th>
-                                                                <th>Harga</th>
-                                                                <th>Jumlah</th>
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
-
-                                                <div class="col-12 mt-5">
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
-                                                    <input class="btn btn-danger" type="reset" value="X Batal">
-                                                </div>
-                                            </form>
-                                        </div>
+                                        </h2>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end graph -->
-                <div class="row column3">
-                    <!-- testimonial -->
+                                <div class="col">
+                                    <a href="/transaksi/create" class="btn btn-dark text-white float-end" style="flex: right;">Buat Transaksi</a>
 
-                </div>
-                <!-- end testimonial -->
-                <!-- progress bar -->
-                <div class="col-md-8">
-                    <div class="white_shd full margin_bottom_30">
-                        <div class="full graph_head">
-                            <div class="heading1 margin_0">
-                                <h2>Data Barang</h2>
+                                </div>
+
                             </div>
                         </div>
                         <div class="full progress_bar_inner">
@@ -127,15 +47,33 @@
 
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kategori</th>
-                                                    <th>Nama Barang</th>
-                                                    <th>Harga</th>
-                                                    <th>Jumlah</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Nama Pembeli</th>
+                                                    <th>Pembayaran</th>
+                                                    <th>Keterangan</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                <?php $no = 1;
+                                                foreach ($jointransaksi as $t) : ?>
+                                                    <tr>
+                                                        <td><?= $no++ ?></td>
+                                                        <td><?= $t['tgl']; ?></td>
+                                                        <td><?= $t['nama']; ?></td>
+                                                        <td><?= $t['nama_pembayaran']; ?></td>
+                                                        <td><?= $t['keterangan']; ?></td>
+                                                        <td>
+                                                            <a href="/transaksi/edit/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fa fa-edit"></i> Ubah</a>
+                                                            <!-- <a href="/data-akun/detail/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Detail</a> -->
+                                                            <form action="/transaksi/<?= $t['id_transaksi']; ?>" method="post" class="d-inline">
+                                                                <?= csrf_field(); ?>
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" onclick="return confirm('Apakah Anda Yakin ?');"><i class="fa fa-trash fa-sm text-white-50"></i> Hapus</a> </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
                                     </div>

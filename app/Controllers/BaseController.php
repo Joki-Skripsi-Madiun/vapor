@@ -58,8 +58,10 @@ abstract class BaseController extends Controller
         $this->userModel = new \App\Models\UserModel();
         helper('tgl_indo');
         $this->barangModel = new \App\Models\BarangModel();
+        $this->detailModel = new \App\Models\DetailModel();
         $this->kategoriModel = new \App\Models\KategoriModel();
         $this->pembayaranModel = new \App\Models\PembayaranModel();
         $this->transaksiModel = new \App\Models\TransaksiModel();
+        $this->cart = \Config\Services::cart();
     }
 }

@@ -49,6 +49,7 @@ class ComposerStaticInit42b83b51004c88c2bb0e6a5fd11a98f3
         'C' => 
         array (
             'CodeIgniter\\' => 12,
+            'CodeIgniterCart\\' => 16,
         ),
     );
 
@@ -104,6 +105,10 @@ class ComposerStaticInit42b83b51004c88c2bb0e6a5fd11a98f3
         'CodeIgniter\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeigniter4/framework/system',
+        ),
+        'CodeIgniterCart\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jason-napolitano/codeigniter4-cart-module/src',
         ),
     );
 

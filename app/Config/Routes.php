@@ -64,9 +64,13 @@ $routes->delete('/pembayaran/(:num)', 'Pembayaran::delete/$1', ['filter' => 'aut
 
 // Transaksi
 $routes->get('/transaksi', 'Transaksi::index', ['filter' => 'auth']);
-$routes->post('/tambah/save', 'Transaksi::save', ['filter' => 'auth']);
-$routes->get('/edit/(:num)', 'Transaksi::edit/$1', ['filter' => 'auth']);
-$routes->post('/edit/update/(:num)', 'Transaksi::update/$1', ['filter' => 'auth']);
+$routes->get('/transaksi/create', 'Transaksi::create', ['filter' => 'auth']);
+$routes->post('/transaksi/save', 'Transaksi::save', ['filter' => 'auth']);
+$routes->post('/transaksi/checkout', 'Transaksi::proses_order', ['filter' => 'auth']);
+$routes->add('/transaksi/hapus/(:any)', 'Transaksi::hapus/$1', ['filter' => 'auth']);
+$routes->add('/transaksi/ubah_cart', 'Transaksi::ubah_cart', ['filter' => 'auth']);
+$routes->get('/transaksi/edit/(:num)', 'Transaksi::edit/$1', ['filter' => 'auth']);
+$routes->post('/transaksi/update/(:num)', 'Transaksi::update/$1', ['filter' => 'auth']);
 $routes->delete('/transaksi/(:num)', 'Transaksi::delete/$1', ['filter' => 'auth']);
 
 

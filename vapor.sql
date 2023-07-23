@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 21, 2023 at 03:45 PM
+-- Generation Time: Jul 23, 2023 at 03:47 AM
 -- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- PHP Version: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,6 +49,21 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `id_kategori`, `jumlah_barang`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detail_transaksi`
+--
+
+DROP TABLE IF EXISTS `detail_transaksi`;
+CREATE TABLE IF NOT EXISTS `detail_transaksi` (
+  `id_detail` int NOT NULL AUTO_INCREMENT,
+  `id_transaksi` int NOT NULL,
+  `id_barang` int NOT NULL,
+  `qty` int NOT NULL,
+  PRIMARY KEY (`id_detail`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kategori`
 --
 
@@ -86,7 +101,6 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `nama_pembayaran`, `nomer`) VALUES
-(1, 'Bank BRI', '121212'),
 (2, 'Bank BCA', '901808100');
 
 -- --------------------------------------------------------
@@ -98,13 +112,12 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `nama_pembayaran`, `nomer`) VALUES
 DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE IF NOT EXISTS `transaksi` (
   `id_transaksi` int NOT NULL AUTO_INCREMENT,
-  `id_barang` int NOT NULL,
   `id_pembayaran` int NOT NULL,
   `id_user` int NOT NULL,
   `tgl` date NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   PRIMARY KEY (`id_transaksi`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -127,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `role`) VALUES
-(1, 'admin baru', 'admin1', '$2y$10$VAGRT6gBt1PNl/Rc3cmWv.Dii2vcjnQKkdBc848QCu96Z0aT0uKLm', 1),
+(1, 'admin baru', 'admin1', '$2y$10$IQuwnnjyC9hZOQGmjAOyb.I8yIsRn7yQjw9bAglNkXvplw5a31Zr.', 1),
 (2, 'aisah', 'aisah21', '$2y$10$2KJb1IUZPo6PIo1CTYqyoexoxFMC01vae7QcNPspek0KjaPtelaXm', 2);
 COMMIT;
 

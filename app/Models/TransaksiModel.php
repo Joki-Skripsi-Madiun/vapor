@@ -31,7 +31,7 @@ class TransaksiModel extends Model
             $db      = \Config\Database::connect();
             $builder = $db->table('transaksi');
             $builder->select('*');
-            $builder->join('barang', 'barang.id_barang = transaksi.id_barang');
+
             $builder->join('user', 'user.id_user = transaksi.id_user');
             $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
             $query = $builder->get();
@@ -40,7 +40,7 @@ class TransaksiModel extends Model
         $db      = \Config\Database::connect();
         $builder = $db->table('transaksi');
         $builder->select('*');
-        $builder->join('barang', 'barang.id_barang = transaksi.id_barang');
+
         $builder->join('user', 'user.id_user = transaksi.id_user');
         $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
         $builder->where('id_transaksi', $id_transaksi);
