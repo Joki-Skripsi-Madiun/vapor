@@ -52,4 +52,16 @@ class TransaksiModel extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+    public function joinTransaksiUsers($id_user)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('transaksi');
+        $builder->select('*');
+        $builder->join('user', 'user.id_user = transaksi.id_user');
+        $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
+        $builder->where('transaksi.id_user', $id_user);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
 }
