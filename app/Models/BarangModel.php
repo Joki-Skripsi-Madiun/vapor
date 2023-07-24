@@ -43,4 +43,22 @@ class BarangModel extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+    public function decreaseStock($id_barang, $qty)
+    {
+        $barang = $this->find($id_barang);
+        if ($barang) {
+            $newStock = $barang['jumlah_barang'] - $qty;
+            $this->update($id_barang, ['jumlah_barang' => $newStock]);
+        }
+    }
+
+    public function hitungBarang()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->table('barang');
+        $query->selectCount('id_barang');
+        $result = $query->countAllResults();
+        return $result;
+    }
 }

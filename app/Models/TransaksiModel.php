@@ -20,11 +20,16 @@ class TransaksiModel extends Model
         return $this->where(['id_transaksi' => $id_transaksi])->first();
     }
 
-    public function hitungJumlahUsers()
+    public function hitungTransaksi()
     {
-        $akun = $this->query('SELECT * FROM user');
-        return $akun->getNumRows();
+        $db = \Config\Database::connect();
+        $query = $db->table('transaksi');
+        $query->selectCount('id_transaksi');
+        $result = $query->countAllResults();
+        return $result;
     }
+
+
     public function joinTransaksi($id_transaksi = false)
     {
         if ($id_transaksi == false) {
@@ -44,6 +49,18 @@ class TransaksiModel extends Model
         $builder->join('user', 'user.id_user = transaksi.id_user');
         $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
         $builder->where('id_transaksi', $id_transaksi);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
+    public function joinTransaksiUsers($id_user)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('transaksi');
+        $builder->select('*');
+        $builder->join('user', 'user.id_user = transaksi.id_user');
+        $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
+        $builder->where('transaksi.id_user', $id_user);
         $query = $builder->get();
         return $query->getResultArray();
     }

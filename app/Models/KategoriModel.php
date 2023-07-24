@@ -20,24 +20,12 @@ class KategoriModel extends Model
         return $this->where(['id_kategori' => $id_kategori])->first();
     }
 
-    public function hitungJumlahUsers()
+    public function hitungKategori()
     {
-        $akun = $this->query('SELECT * FROM user');
-        return $akun->getNumRows();
+        $db = \Config\Database::connect();
+        $query = $db->table('kategori');
+        $query->selectCount('id_kategori');
+        $result = $query->countAllResults();
+        return $result;
     }
-    // public function joinMobil($id_akun = false)
-    // {
-    //     if ($id_akun == false) {
-    //         $db      = \Config\Database::connect();
-    //         $builder = $db->table('mobil');
-    //         $builder->select('*');
-    //         $builder->join('merk', 'merk.id_merk = mobil.id_merk');
-    //         $query = $builder->get();
-    //         return $query;
-    //     }
-    //     return $this->where(['id_akun' => $id_akun])->first();
-    // }
-
-
-
 }

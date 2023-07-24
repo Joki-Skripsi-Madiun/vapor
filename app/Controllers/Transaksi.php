@@ -10,6 +10,11 @@ class Transaksi extends BaseController
     public function index()
     {
         $session = session();
+        if (session()->get('role') == 1) {
+            $transaksi = $this->transaksiModel->joinTransaksi();
+        } else {
+            $transaksi = $this->transaksiModel->joinTransaksiUsers(session()->get('id_user'));
+        }
 
         $data = [
             'session' => $session,
@@ -18,7 +23,7 @@ class Transaksi extends BaseController
             'barang' => $this->barangModel->getbarang(),
             'kategori' => $this->kategoriModel->getkategori(),
             'user' => $this->userModel->getuser(),
-            'jointransaksi' => $this->transaksiModel->joinTransaksi(),
+            'jointransaksi' => $transaksi,
             'joinbarang' => $this->barangModel->joinbarang(),
         ];
         return view('transaksi/index', $data);
@@ -111,6 +116,8 @@ class Transaksi extends BaseController
                     'id_barang' => $item['id'],
                     'qty' => $item['qty']
                 );
+
+                $this->barangModel->decreaseStock($item['id'], $item['qty']);
 
                 $proses = $this->detailModel->insert($data_detail);
             }

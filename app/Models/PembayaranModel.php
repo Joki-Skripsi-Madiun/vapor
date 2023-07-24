@@ -20,24 +20,12 @@ class PembayaranModel extends Model
         return $this->where(['id_pembayaran' => $id_pembayaran])->first();
     }
 
-    public function hitungJumlahUsers()
+    public function hitungPembayaran()
     {
-        $akun = $this->query('SELECT * FROM user');
-        return $akun->getNumRows();
+        $db = \Config\Database::connect();
+        $query = $db->table('pembayaran');
+        $query->selectCount('id_pembayaran');
+        $result = $query->countAllResults();
+        return $result;
     }
-    // public function joinMobil($id_akun = false)
-    // {
-    //     if ($id_akun == false) {
-    //         $db      = \Config\Database::connect();
-    //         $builder = $db->table('mobil');
-    //         $builder->select('*');
-    //         $builder->join('merk', 'merk.id_merk = mobil.id_merk');
-    //         $query = $builder->get();
-    //         return $query;
-    //     }
-    //     return $this->where(['id_akun' => $id_akun])->first();
-    // }
-
-
-
 }

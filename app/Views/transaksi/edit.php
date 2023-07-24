@@ -49,15 +49,19 @@
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                <div class="col-12">
-                                                    <label for="exampleInputEmail1" class="form-label">Pembeli</label>
-                                                    <select class="form-control" name="id_user">
-                                                        <option value="<?= (old('id_user')) ? old('id_user') : $jointransaksi[0]['id_user']; ?>" selected><?= (old('nama')) ? old('nama') : $jointransaksi[0]['nama']; ?></option>
-                                                        <?php foreach ($user as $u) : ?>
-                                                            <option value="<?= $u['id_user'] ?>"><?= $u['nama'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
-                                                </div>
+                                                <?php if (session()->get('role') == 1) { ?>
+                                                    <div class="col-12">
+                                                        <label for="exampleInputEmail1" class="form-label">Pembeli</label>
+                                                        <select class="form-control" name="id_user">
+                                                            <option value="<?= (old('id_user')) ? old('id_user') : $jointransaksi[0]['id_user']; ?>" selected><?= (old('nama')) ? old('nama') : $jointransaksi[0]['nama']; ?></option>
+                                                            <?php foreach ($user as $u) : ?>
+                                                                <option value="<?= $u['id_user'] ?>"><?= $u['nama'] ?></option>
+                                                            <?php endforeach ?>
+                                                        </select>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <input type="hidden" name="id_user" value="<?= $jointransaksi[0]['id_user']; ?>">
+                                                <?php } ?>
                                                 <div class="col-12">
                                                     <label for="merk" class="form-label">Nama Pembayaran</label>
                                                     <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"><?= (old('keterangan')) ? old('keterangan') : $transaksi['keterangan']; ?></textarea>

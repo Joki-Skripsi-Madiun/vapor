@@ -50,7 +50,7 @@ $routes->delete('/user/(:num)', 'Akun::deleteAkun/$1', ['filter' => 'auth']);
 
 //Laporan
 $routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
-$routes->post('/user/save', 'Akun::save', ['filter' => 'auth']);
+$routes->add('/laporan/print', 'Laporan::print_tanggal', ['filter' => 'auth']);
 $routes->post('/user/update/(:num)', 'Akun::update/$1', ['filter' => 'auth']);
 $routes->get('/user/edit/(:num)', 'Akun::edit/$1', ['filter' => 'auth']);
 $routes->delete('/user/(:num)', 'Akun::deleteAkun/$1', ['filter' => 'auth']);
