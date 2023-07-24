@@ -121,7 +121,7 @@
                             <td><?= $t['nama_barang']; ?></td>
                             <td>Rp. <?= number_format($t['harga_barang'], 2, ',', '.'); ?></td>
                             <td><?= $t['qty'] ?></td>
-                            <td style="text-align: right;"><?= number_format($t['harga_barang'] * $t['qty'], 2, ',', '.'); ?></td>
+                            <td style="text-align: right;">Rp. <?= number_format($t['harga_barang'] * $t['qty'], 2, ',', '.'); ?></td>
                             <td class="hidden-column-display"><?= $t['harga_barang'] * $t['qty'] ?></td>
                         </tr>
                     <?php endforeach ?>

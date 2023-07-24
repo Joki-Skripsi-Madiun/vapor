@@ -64,4 +64,19 @@ class TransaksiModel extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+
+    public function joinTransaksiBulan($bulan, $tahun)
+    {
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('transaksi');
+        $builder->select('*');
+        $builder->join('user', 'user.id_user = transaksi.id_user');
+        $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
+        $builder->where('MONT(transaksi.tgl)', $bulan);
+        $builder->where('YEAR(transaksi.tgl)', $tahun);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
 }

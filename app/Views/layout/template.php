@@ -73,7 +73,30 @@
 
         </div>
     </div>
+    <script>
+        // Function to calculate the sum of the "Total" column
+        function calculateTotalSum() {
+            let totalSum = 0;
+            const totalCells = document.querySelectorAll("#tabelHarga tbody td:last-child");
 
+            totalCells.forEach(cell => {
+                const totalValue = parseFloat(cell.innerText.replace(/[^\d.-]/g, ''));
+                totalSum += totalValue;
+            });
+
+            return totalSum;
+        }
+
+        // Call the function to calculate the total sum
+        const totalHargaSpan = document.getElementById("totalHarga");
+        const totalSum = calculateTotalSum();
+        totalHargaSpan.innerText = `Rp. ${numberWithCommas(totalSum.toFixed(2))}`;
+
+        // Helper function to add thousand separators
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
     <!-- jQuery -->
     <script src="<?= base_url(); ?>/template/js/jquery.min.js"></script>
     <script src="<?= base_url(); ?>/template/js/popper.min.js"></script>
@@ -95,6 +118,7 @@
         var ps = new PerfectScrollbar('#sidebar');
     </script>
     <!-- custom js -->
+
     <script src="<?= base_url(); ?>/template/js/custom.js"></script>
     <script src="<?= base_url(); ?>/template/js/chart_custom_style1.js"></script>
     <script type="text/javascript">
@@ -102,6 +126,7 @@
             $('#data1').DataTable();
         });
     </script>
+
 </body>
 
 </html>
