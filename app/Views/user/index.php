@@ -34,6 +34,10 @@
                                                     <label for="merk" class="form-label">Nama User</label>
                                                     <input type="text" name="nama" value="<?= old('nama') ?>" class="form-control" id="inputAddress" placeholder="Nama User">
                                                 </div>
+                                                <div class="col-12">
+                                                    <label for="merk" class="form-label">No Telepon</label>
+                                                    <input type="text" name="tlp" value="<?= old('tlp') ?>" class="form-control" id="inputAddress" placeholder="No Telepon">
+                                                </div>
                                                 <br>
                                                 <div class="col-12">
                                                     <label for="exampleInputEmail1" class="form-label">Role</label>
@@ -72,7 +76,7 @@
                     <div class="white_shd full margin_bottom_30">
                         <div class="full graph_head">
                             <div class="heading1 margin_0">
-                                <h2>Data Pembayaran</h2>
+                                <h2>Data User</h2>
                             </div>
                         </div>
                         <div class="full progress_bar_inner">
@@ -86,6 +90,7 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nama</th>
+                                                    <th>Username</th>
                                                     <th>Nomer</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -97,6 +102,7 @@
                                                         <td><?= $no++ ?></td>
                                                         <td><?= $a['nama']; ?></td>
                                                         <td><?= $a['username']; ?></td>
+                                                        <td><?= $a['tlp']; ?></td>
                                                         <td>
                                                             <a href="user/edit/<?= $a['id_user']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fa fa-edit"></i> Ubah</a>
                                                             <!-- <a href="/data-akun/detail/<?= $a['id_user']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Detail</a> -->

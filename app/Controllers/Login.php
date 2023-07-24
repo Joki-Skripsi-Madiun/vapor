@@ -28,7 +28,7 @@ class Login extends Controller
                     'id_user'       => $data['id_user'],
                     'nama'          => $data['nama'],
                     'username'      => $data['username'],
-
+                    'tlp'          => $data['tlp'],
                     'role'          => $data['role'],
                     'logged_in'     => TRUE
                 ];

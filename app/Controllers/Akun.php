@@ -45,6 +45,12 @@ class Akun extends BaseController
                     'errors' => [
                         'required' => 'Password Harus Diisi.',
                     ]
+                ],
+                'tlp' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'No Telepon Harus Diisi.',
+                    ]
                 ]
 
 
@@ -58,6 +64,7 @@ class Akun extends BaseController
             'nama' => $this->request->getVar('nama'),
             'username' => $this->request->getVar('username'),
             'role' => $this->request->getVar('role'),
+            'tlp' => $this->request->getVar('tlp'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
 
         ]);
@@ -109,6 +116,12 @@ class Akun extends BaseController
                     'errors' => [
                         'required' => 'Role Harus Diisi.',
                     ]
+                ],
+                'tlp' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'No Telepon Harus Diisi.',
+                    ]
                 ]
 
 
@@ -123,6 +136,7 @@ class Akun extends BaseController
             'nama' => $this->request->getVar('nama'),
             'role' => $this->request->getVar('role'),
             'username' => $this->request->getVar('username'),
+            'tlp' => $this->request->getVar('tlp'),
             password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
         ]);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');

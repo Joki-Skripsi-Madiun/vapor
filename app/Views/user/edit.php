@@ -47,6 +47,10 @@
                                                         <input type="text" name="nama" value="<?= (old('nama')) ? old('nama') : $user['nama']; ?>" class="form-control" id="inputAddress" placeholder="Nama">
                                                     </div>
                                                     <div class="col-12">
+                                                        <label for="merk" class="form-label">No Telepon</label>
+                                                        <input type="text" name="tlp" value="<?= (old('tlp')) ? old('tlp') : $user['tlp']; ?>" class="form-control" id="inputAddress" placeholder="No Telepon">
+                                                    </div>
+                                                    <div class="col-12">
                                                         <label for="merk" class="form-label">Username</label>
                                                         <input type="text" name="username" value="<?= (old('username')) ? old('username') : $user['username']; ?>" class="form-control" id="inputAddress" placeholder="Username">
                                                     </div>
