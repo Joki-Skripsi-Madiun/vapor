@@ -36,11 +36,11 @@ class Login extends Controller
                 return redirect()->to('/dashboard');
             } else {
                 $session->setFlashdata('msg', 'Wrong Password');
-                return redirect()->to('/');
+                return redirect()->to('/login');
             }
         } else {
             $session->setFlashdata('msg', 'Username not Found');
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }
     }
 
@@ -48,6 +48,6 @@ class Login extends Controller
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/');
+        return redirect()->to('/login');
     }
 }

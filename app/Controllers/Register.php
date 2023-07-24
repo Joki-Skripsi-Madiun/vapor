@@ -39,7 +39,7 @@ class Register extends Controller
 
             ];
             $model->save($data);
-            return redirect()->to('/');
+            return redirect()->to('/login');
         } else {
             $data['validation'] = $this->validator;
             echo view('register', $data);

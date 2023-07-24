@@ -27,7 +27,12 @@ class Dashboard extends BaseController
 
         $data = [
             'session' => $session,
-            'active'  => 'dashboard'
+            'active'  => 'dashboard',
+            'pembayaran'  => $this->pembayaranModel->hitungPembayaran(),
+            'kategori'  => $this->kategoriModel->hitungKategori(),
+            'barang'  => $this->barangModel->hitungBarang(),
+            'transaksi'  => $this->transaksiModel->hitungTransaksi(),
+            'user'  => $this->userModel->hitungUsers(),
         ];
         return view('dashboard/pembeli', $data);
     }
