@@ -51,7 +51,7 @@
                                                     <th>Nama Pembeli</th>
                                                     <th>Pembayaran</th>
                                                     <th>Keterangan</th>
-                                                    <th>Aksi</th>
+                                                    <th style="text-align: center;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -63,9 +63,9 @@
                                                         <td><?= $t['nama']; ?></td>
                                                         <td><?= $t['nama_pembayaran']; ?></td>
                                                         <td><?= $t['keterangan']; ?></td>
-                                                        <td>
+                                                        <td style="text-align: center;">
                                                             <a href="/transaksi/edit/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fa fa-edit"></i> Ubah</a>
-                                                            <!-- <a href="/data-akun/detail/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Detail</a> -->
+                                                            <a href="/transaksi/detail/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fa fa-eye text-white"></i> Detail</a>
                                                             <form action="/transaksi/<?= $t['id_transaksi']; ?>" method="post" class="d-inline">
                                                                 <?= csrf_field(); ?>
                                                                 <input type="hidden" name="_method" value="DELETE">

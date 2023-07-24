@@ -70,6 +70,7 @@ $routes->post('/transaksi/checkout', 'Transaksi::proses_order', ['filter' => 'au
 $routes->add('/transaksi/hapus/(:any)', 'Transaksi::hapus/$1', ['filter' => 'auth']);
 $routes->add('/transaksi/ubah_cart', 'Transaksi::ubah_cart', ['filter' => 'auth']);
 $routes->get('/transaksi/edit/(:num)', 'Transaksi::edit/$1', ['filter' => 'auth']);
+$routes->get('/transaksi/detail/(:num)', 'Transaksi::detail/$1', ['filter' => 'auth']);
 $routes->post('/transaksi/update/(:num)', 'Transaksi::update/$1', ['filter' => 'auth']);
 $routes->delete('/transaksi/(:num)', 'Transaksi::delete/$1', ['filter' => 'auth']);
 

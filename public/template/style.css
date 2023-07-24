@@ -3415,3 +3415,13 @@ table.projects tr td:first-child {
     height: 100%;
     min-height: 720px;
 }
+
+ /* Kolom dengan display: none akan sepenuhnya dihilangkan dari tampilan */
+ .hidden-column-display {
+     display: none;
+ }
+
+ /* Kolom dengan visibility: hidden tetap memakan ruang, tetapi tidak terlihat */
+ .hidden-column-visibility {
+     visibility: hidden;
+ }

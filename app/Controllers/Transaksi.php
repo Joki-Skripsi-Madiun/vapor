@@ -186,4 +186,23 @@ class Transaksi extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus.');
         return redirect()->to('transaksi');
     }
+
+    public function detail($id_transaksi)
+    {
+        $transaksi = $this->transaksiModel->getTransaksi($id_transaksi);
+        if (empty($transaksi)) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Tidak ditemukan !');
+        }
+        $data = [
+
+            'validation' => \Config\Services::validation(),
+            'transaksi' => $this->transaksiModel->getTransaksi($id_transaksi),
+            'jointransaksi' => $this->transaksiModel->joinTransaksi($id_transaksi),
+            'joindetail' => $this->detailModel->joinDetailTransaksiDetail($id_transaksi),
+            'pembayaran' => $this->pembayaranModel->getPembayaran(),
+            'user' => $this->userModel->getUser(),
+
+        ];
+        return view('transaksi/detail', $data);
+    }
 }

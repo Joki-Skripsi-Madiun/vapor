@@ -88,6 +88,20 @@ class DetailModel extends Model
         return $query->getResultArray();
     }
 
+    public function joinDetailTransaksiDetail($id_transaksi)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('detail_transaksi');
+        $builder->join('transaksi', 'transaksi.id_transaksi = detail_transaksi.id_transaksi');
+        $builder->join('barang', 'barang.id_barang = detail_transaksi.id_barang');
+        $builder->join('kategori', 'kategori.id_kategori = barang.id_kategori');
+        $builder->join('user', 'user.id_user = transaksi.id_user');
+        $builder->join('pembayaran', 'pembayaran.id_pembayaran = transaksi.id_pembayaran');
+        $builder->where('detail_transaksi.id_transaksi', $id_transaksi);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
     public function PesananMobilSum($id_mobil, $proses, $bulan, $tahun)
     {
 
