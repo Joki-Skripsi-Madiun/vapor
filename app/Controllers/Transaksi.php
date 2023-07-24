@@ -112,6 +112,8 @@ class Transaksi extends BaseController
                     'qty' => $item['qty']
                 );
 
+                $this->barangModel->decreaseStock($item['id'], $item['qty']);
+
                 $proses = $this->detailModel->insert($data_detail);
             }
         }
