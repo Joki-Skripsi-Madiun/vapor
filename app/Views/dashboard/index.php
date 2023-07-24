@@ -25,7 +25,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Pembayaran</p>
-                                <p class="head_couter">Welcome</p>
+                                <p class="head_couter"><?= $pembayaran; ?> Pembayaran</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Kategori</p>
-                                <p class="head_couter">Average Time</p>
+                                <p class="head_couter"><?= $kategori; ?> Kategori</p>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Barang</p>
-                                <p class="head_couter">Collections</p>
+                                <p class="head_couter"><?= $barang; ?> Barang</p>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Transaksi</p>
-                                <p class="head_couter">Comments</p>
+                                <p class="head_couter"><?= $transaksi; ?> Transaksi</p>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">User</p>
-                                <p class="head_couter">Comments</p>
+                                <p class="head_couter"><?= $user; ?> User</p>
                             </div>
                         </div>
                     </div>

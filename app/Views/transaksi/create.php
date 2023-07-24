@@ -70,42 +70,7 @@
                                 <div class="col-md-12">
                                     <div class="content testimonial">
                                         <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
-                                            <form action="<?php echo base_url() ?>/transaksi/checkout" method="post" enctype="multipart/form-data">
-                                                <div class="col-12">
-                                                    <label for="exampleInputEmail1" class="form-label">Nama Pembeli</label>
-                                                    <select class="form-control" name="id_user">
-                                                        <option selected>Open this select menu</option>
-                                                        <?php foreach ($user as $k) : ?>
-                                                            <option value="<?= $k['id_user'] ?>"><?= $k['nama'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
-                                                </div>
 
-                                                <div class="col-12">
-                                                    <label for="exampleInputEmail1" class="form-label">Pembayaran</label>
-                                                    <select class="form-control" name="id_pembayaran">
-                                                        <option selected>Open this select menu</option>
-                                                        <?php foreach ($pembayaran as $p) : ?>
-                                                            <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="exampleInputEmail1" class="form-label">Keterangan</label>
-                                                    <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"></textarea>
-
-                                                </div>
-                                                <div class="col-12 mt-5">
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-cart"></i> Cek Out</button>
-                                                    <a href="/transaksi/batal" class="btn btn-danger">Batal</a>
-                                                </div>
-                                            </form>
-
-                                            <div class="col-sm-4 col-md-3 margin_bottom_30">
-
-
-                                            </div>
 
                                             <div class="col-12">
                                                 <form action="<?php echo base_url() ?>/transaksi/ubah_cart" method="post" name="frmShopping" id="frmShopping" class="form-horizontal" enctype="multipart/form-data">
@@ -169,6 +134,46 @@
                                                     }
                                                     ?>
                                                 </form>
+                                                <hr>
+                                                <form action="<?php echo base_url() ?>/transaksi/checkout" method="post" enctype="multipart/form-data">
+                                                    <?php if (session()->get('role') == 1) { ?>
+                                                        <div class="col-12">
+                                                            <label for="exampleInputEmail1" class="form-label">Nama Pembeli</label>
+                                                            <select class="form-control" name="id_user">
+                                                                <option selected>Open this select menu</option>
+                                                                <?php foreach ($user as $k) : ?>
+                                                                    <option value="<?= $k['id_user'] ?>"><?= $k['nama'] ?></option>
+                                                                <?php endforeach ?>
+                                                            </select>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <input type="hidden" name="id_user" value="<?= session()->get('id_user'); ?>">
+                                                    <?php } ?>
+                                                    <div class="col-12">
+                                                        <label for="exampleInputEmail1" class="form-label">Pembayaran</label>
+                                                        <select class="form-control" name="id_pembayaran">
+                                                            <option selected>Open this select menu</option>
+                                                            <?php foreach ($pembayaran as $p) : ?>
+                                                                <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?></option>
+                                                            <?php endforeach ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for="exampleInputEmail1" class="form-label">Keterangan</label>
+                                                        <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"></textarea>
+
+                                                    </div>
+                                                    <div class="col-12 mt-5">
+                                                        <button type="submit" class="btn btn-success"><i class="fa fa-cart"></i> Cek Out</button>
+                                                        <a href="/transaksi/batal" class="btn btn-danger">Batal</a>
+                                                    </div>
+                                                </form>
+
+                                                <div class="col-sm-4 col-md-3 margin_bottom_30">
+
+
+                                                </div>
                                             </div>
 
                                             <!-- Modal Penilai -->

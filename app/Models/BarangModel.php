@@ -52,4 +52,13 @@ class BarangModel extends Model
             $this->update($id_barang, ['jumlah_barang' => $newStock]);
         }
     }
+
+    public function hitungBarang()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->table('barang');
+        $query->selectCount('id_barang');
+        $result = $query->countAllResults();
+        return $result;
+    }
 }
