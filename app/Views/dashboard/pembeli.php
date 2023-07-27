@@ -26,7 +26,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Kategori</p>
-                                <p class="head_couter">Average Time</p>
+                                <p class="head_couter"><?= $kategori; ?> Kategori</p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Barang</p>
-                                <p class="head_couter">Collections</p>
+                                <p class="head_couter"><?= $barang; ?> Barang</p>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="counter_no">
                             <div>
                                 <p class="total_no">Transaksi</p>
-                                <p class="head_couter">Comments</p>
+                                <p class="head_couter"><?= $transaksi; ?> Transaksi</p>
                             </div>
                         </div>
                     </div>
@@ -68,8 +68,8 @@
         <!-- footer -->
         <div class="container-fluid">
             <div class="footer">
-                <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
-                    Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+                <p>Copyright © 2023 Designed by html.design. All rights reserved.<br><br>
+                    Distributed By: Keluarga Vapor Store Magetan
                 </p>
             </div>
         </div>

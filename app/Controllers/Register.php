@@ -22,9 +22,9 @@ class Register extends Controller
         //set rules validation form
         $rules = [
             'nama'          => 'required|min_length[3]|max_length[50]',
-
+            'tlp' => 'required|max_length[200]',
             'username'      => 'required|min_length[5]|max_length[50]|is_unique[user.username]',
-            // 'role'          => 'required',
+            'role'          => 'required',
             'password'      => 'required|min_length[5]|max_length[200]',
         ];
 
@@ -33,13 +33,14 @@ class Register extends Controller
 
             $data = [
                 'nama'     => $this->request->getVar('nama'),
-                // 'role'     => $this->request->getVar('role'),
+                'tlp'     => $this->request->getVar('tlp'),
+                'role' => $this->request->getVar('role'),
                 'username' => $this->request->getVar('username'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
 
             ];
             $model->save($data);
-            return redirect()->to('/');
+            return redirect()->to('/login');
         } else {
             $data['validation'] = $this->validator;
             echo view('register', $data);

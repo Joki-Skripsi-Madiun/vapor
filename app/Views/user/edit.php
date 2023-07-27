@@ -47,6 +47,10 @@
                                                         <input type="text" name="nama" value="<?= (old('nama')) ? old('nama') : $user['nama']; ?>" class="form-control" id="inputAddress" placeholder="Nama">
                                                     </div>
                                                     <div class="col-12">
+                                                        <label for="merk" class="form-label">No Telepon</label>
+                                                        <input type="text" name="tlp" value="<?= (old('tlp')) ? old('tlp') : $user['tlp']; ?>" class="form-control" id="inputAddress" placeholder="No Telepon">
+                                                    </div>
+                                                    <div class="col-12">
                                                         <label for="merk" class="form-label">Username</label>
                                                         <input type="text" name="username" value="<?= (old('username')) ? old('username') : $user['username']; ?>" class="form-control" id="inputAddress" placeholder="Username">
                                                     </div>
@@ -85,8 +89,8 @@
     <!-- footer -->
     <div class="container-fluid">
         <div class="footer">
-            <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
-                Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+            <p>Copyright © 2023 Designed by html.design. All rights reserved.<br><br>
+                Distributed By: Keluarga Vapor Store Magetan
             </p>
         </div>
     </div>

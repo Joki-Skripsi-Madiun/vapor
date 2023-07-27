@@ -89,8 +89,9 @@ $routes->get('/barang/edit/(:num)', 'Barang::edit/$1', ['filter' => 'auth']);
 $routes->post('/barang/update/(:num)', 'Barang::update/$1', ['filter' => 'auth']);
 $routes->delete('/barang/(:num)', 'Barang::delete/$1', ['filter' => 'auth']);
 
+$routes->get('/', 'Utama::index');
 // Login Register
-$routes->get('/', 'Login::index');
+$routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/register', 'Register::index');
 $routes->post('/register/save', 'Register::save');

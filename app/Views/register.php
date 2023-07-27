@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>Keluarga Vapor Store Magetan</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -43,16 +43,23 @@
             <div class="center verticle_center full_height">
                 <div class="login_section">
                     <div class="logo_login">
+
                         <div class="center">
-                            <img width="210" src="<?= base_url(); ?>/template/images/logo/logo.png" alt="#" />
+                            <h1 class="text-white">Register</h1>
+                            <!-- <img width="210" src="<?= base_url(); ?>/template/images/logo/logo.png" alt="#" /> -->
                         </div>
                     </div>
+
                     <div class="login_form">
                         <form action="/register/save" method="post">
 
                             <div class="field">
                                 <label class="label_field">Nama</label>
                                 <input type="text" name="nama" placeholder="Nama" />
+                            </div>
+                            <div class="field">
+                                <label class="label_field">No Telepon</label>
+                                <input type="text" name="tlp" placeholder="no Telepon" />
                             </div>
 
                             <div class="field">
