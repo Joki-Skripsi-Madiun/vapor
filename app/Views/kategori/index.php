@@ -29,7 +29,7 @@
                                     <div class="col-md-12">
                                         <div class="content testimonial">
                                             <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
-                                                <form class="row g-3" action="<?= base_url(); ?>/barang/save" method="post" enctype="multipart/form-data">
+                                                <form class="row g-3" action="<?= base_url(); ?>/kategori/save" method="post" enctype="multipart/form-data">
 
                                                     <div class="col-12">
                                                         <label for="merk" class="form-label">Nama Kategori</label>

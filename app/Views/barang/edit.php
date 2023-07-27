@@ -42,6 +42,7 @@
                                                 <div class="col-12">
                                                     <label for="merk" class="form-label">Nama Barang</label>
                                                     <input type="text" name="nama_barang" value="<?= $joinbarang[0]['nama_barang']; ?>" class="form-control" id="inputAddress" placeholder="Nama Barang">
+                                                    <input type="hidden" name="oldfoto" value="<?= $joinbarang[0]['foto']; ?>" class="form-control" id="inputAddress">
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="merk" class="form-label">Jumlah Barang</label>

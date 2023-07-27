@@ -102,7 +102,7 @@
                                                         <td><?= $no++ ?></td>
                                                         <td><?= $a['nama_kategori']; ?></td>
                                                         <td><?= $a['nama_barang']; ?></td>
-                                                        <td><?= $a['harga_barang']; ?></td>
+                                                        <td>Rp.<?= number_format($a['harga_barang'], 2, ',', '.'); ?></td>
                                                         <td><?= $a['jumlah_barang']; ?></td>
                                                         <td><img src="<?php echo base_url(); ?>/img/<?= $a['foto']; ?>" width="50"></td>
 

@@ -66,7 +66,7 @@ class Barang extends BaseController
         //apakah tidak ada gambar yang diupload
         if ($fileFoto->getError() == 4) {
             // $namaFoto = 'default-akun.png';
-            $namaFoto = $this->request->getVar('oldfoto');
+            $namaFoto = 'default-barang.png';
         } else {
             //generate nama 
 
@@ -97,7 +97,7 @@ class Barang extends BaseController
             'validation' => \Config\Services::validation(),
             'barang' => $this->barangModel->getbarang($id_barang),
             'kategori' => $this->kategoriModel->getkategori(),
-            'joinbarang' => $this->barangModel->joinbarang(),
+            'joinbarang' => $this->barangModel->joinbarang($id_barang),
 
         ];
         return view('barang/edit', $data);
@@ -147,19 +147,26 @@ class Barang extends BaseController
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();
         }
-        // ambil gambar
-        $fileFoto = $this->request->getFile('foto');
 
+
+        // ambil foto
+        $fileFoto = $this->request->getFile('foto');
+        $fotoLama = $this->request->getVar('oldfoto');
         //apakah tidak ada gambar yang diupload
         if ($fileFoto->getError() == 4) {
-            // $namaFoto = 'default-akun.png';
             $namaFoto = $this->request->getVar('oldfoto');
-        } else {
-            //generate nama 
-
+        } elseif ($fotoLama == 'default-barang.png') {
+            //generate nama gambar
             $namaFoto = $fileFoto->getRandomName();
             // pindahkan file ke folder img
             $fileFoto->move('img', $namaFoto);
+        } else {
+            //generate nama gambar
+            $namaFoto = $fileFoto->getRandomName();
+            // pindahkan file ke folder img
+            $fileFoto->move('img', $namaFoto);
+            // hapus file nama
+            unlink('img/' . $this->request->getVar('oldfoto'));
         }
         $this->barangModel->save([
             'id_barang' => $id_barang,
@@ -176,6 +183,14 @@ class Barang extends BaseController
     }
     public function delete($id_barang)
     {
+        // cari gambar berdasarkan id
+        $barang = $this->barangModel->find($id_barang);
+
+        // cek jika gambar default-barang.png
+        if ($barang['foto'] != 'default-barang.png') {
+            //hapus gambar
+            unlink('img/' . $barang['foto']);
+        }
         $this->barangModel->delete($id_barang);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus.');
         return redirect()->to('barang');
