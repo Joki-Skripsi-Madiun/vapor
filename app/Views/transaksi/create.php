@@ -154,7 +154,7 @@
                                                         <select class="form-control" name="id_pembayaran">
                                                             <option selected>Open this select menu</option>
                                                             <?php foreach ($pembayaran as $p) : ?>
-                                                                <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?></option>
+                                                                <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?> - <?= $p['nomer'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
