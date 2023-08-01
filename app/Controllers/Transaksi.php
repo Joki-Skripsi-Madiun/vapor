@@ -100,12 +100,28 @@ class Transaksi extends BaseController
 
     public function proses_order()
     {
+        // ambil gambar
+        $fileFoto = $this->request->getFile('bukti_pembayaran');
+
+        //apakah tidak ada gambar yang diupload
+        if ($fileFoto->getError() == 4) {
+            // $namaFoto = 'default-akun.png';
+            $namaFoto = 'default-pembayaran.jpg';
+        } else {
+            //generate nama 
+            $namaFoto = $fileFoto->getRandomName();
+            // pindahkan file ke folder img
+            $fileFoto->move('img', $namaFoto);
+        }
         //-------------------------Input data order------------------------------
         $data_transaksi = array(
             'tgl' => date('Y-m-d'),
             'id_user' => $this->request->getVar('id_user'),
             'id_pembayaran' => $this->request->getVar('id_pembayaran'),
-            'keterangan' => $this->request->getVar('keterangan')
+            'ekspedisi' => $this->request->getVar('ekspedisi'),
+            'no_resi' => $this->request->getVar('no_resi'),
+            'keterangan' => $this->request->getVar('keterangan'),
+            'bukti_pembayaran' => $namaFoto
         );
         $id_transaksi = $this->transaksiModel->insert($data_transaksi);
         //-------------------------Input data detail order-----------------------
@@ -169,11 +185,40 @@ class Transaksi extends BaseController
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();
         }
+
+        $oldFotoPath = 'img/' . $this->request->getVar('oldfoto');
+        // ambil foto
+        $fileFoto = $this->request->getFile('bukti_pembayaran');
+        $fotoLama = $this->request->getVar('oldfoto');
+        //apakah tidak ada gambar yang diupload
+        if ($fileFoto->getError() == 4) {
+            $namaFoto = $this->request->getVar('oldfoto');
+        } elseif ($fotoLama == 'default-pembayaran.jpg') {
+            //generate nama gambar
+            $namaFoto = $fileFoto->getRandomName();
+            // pindahkan file ke folder img
+            $fileFoto->move('img', $namaFoto);
+        } elseif (file_exists($oldFotoPath)) {
+            //generate nama gambar
+            $namaFoto = $fileFoto->getRandomName();
+            // pindahkan file ke folder img
+            $fileFoto->move('img', $namaFoto);
+        } else {
+            //generate nama gambar
+            $namaFoto = $fileFoto->getRandomName();
+            // pindahkan file ke folder img
+            $fileFoto->move('img', $namaFoto);
+            // hapus file nama
+            unlink($oldFotoPath);
+        }
         $this->transaksiModel->save([
             'id_transaksi' => $id_transaksi,
             'id_pembayaran' => $this->request->getVar('id_pembayaran'),
             'id_user' => $this->request->getVar('id_user'),
+            'ekspedisi' => $this->request->getVar('ekspedisi'),
+            'no_resi' => $this->request->getVar('no_resi'),
             'keterangan' => $this->request->getVar('keterangan'),
+            'bukti_pembayaran' => $namaFoto,
 
         ]);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
@@ -181,6 +226,14 @@ class Transaksi extends BaseController
     }
     public function delete($id_transaksi)
     {
+        // cari gambar berdasarkan id
+        $transaksi = $this->transaksiModel->find($id_transaksi);
+
+        // cek jika gambar default-barang.png
+        if ($transaksi['bukti_pembayaran'] != 'default-transaksi.jpg') {
+            //hapus gambar
+            unlink('img/' . $transaksi['bukti_pembayaran']);
+        }
         $this->detailModel->where('id_transaksi', $id_transaksi)->delete();
         $this->transaksiModel->delete($id_transaksi);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus.');

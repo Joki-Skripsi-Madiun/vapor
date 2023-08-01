@@ -47,6 +47,7 @@
                                                 </div>
                                             </form>
                                             <h4><?= $a['nama_barang']; ?></h4>
+                                            <h4>Rp. <?= number_format($a['harga_barang'], 0, ",", "."); ?></h4>
                                         </div>
                                     </div>
                                 <?php endforeach ?>
@@ -136,6 +137,7 @@
                                                 </form>
                                                 <hr>
                                                 <form action="<?php echo base_url() ?>/transaksi/checkout" method="post" enctype="multipart/form-data">
+
                                                     <?php if (session()->get('role') == 1) { ?>
                                                         <div class="col-12">
                                                             <label for="exampleInputEmail1" class="form-label">Nama Pembeli</label>
@@ -150,6 +152,23 @@
                                                         <input type="hidden" name="id_user" value="<?= session()->get('id_user'); ?>">
                                                     <?php } ?>
                                                     <div class="col-12">
+                                                        <label for="exampleInputEmail1" class="form-label">Pengiriman</label>
+                                                        <select class="form-control" name="ekspedisi">
+                                                            <option selected>Open this select menu</option>
+                                                            <option value="JNE">JNE - COD</option>
+                                                            <option value="J&T">J&T - COD</option>
+                                                            <option value="Ambil di Toko">Ambil di Toko</option>
+                                                        </select>
+                                                    </div>
+                                                    <?php if (session()->get('role') == 1) { ?>
+                                                        <div class="col-12">
+                                                            <label for="exampleInputEmail1" class="form-label">No Resi</label>
+                                                            <input class="form-control" type="text" placeholder="No Resi" name="no_resi">
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <input type="hidden" name="no_resi" value="0">
+                                                    <?php } ?>
+                                                    <div class="col-12">
                                                         <label for="exampleInputEmail1" class="form-label">Pembayaran</label>
                                                         <select class="form-control" name="id_pembayaran">
                                                             <option selected>Open this select menu</option>
@@ -157,6 +176,10 @@
                                                                 <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?> - <?= $p['nomer'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label for="merk" class="form-label">Upload Bukti Pembayaran</label>
+                                                        <input type="file" name="bukti_pembayaran" value="<?= old('bukti_pembayaran') ?>" class="form-control" id="inputAddress" placeholder="Bukti Pembayaran">
                                                     </div>
 
                                                     <div class="col-12">

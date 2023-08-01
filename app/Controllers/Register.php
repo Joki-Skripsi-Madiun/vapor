@@ -23,6 +23,7 @@ class Register extends Controller
         $rules = [
             'nama'          => 'required|min_length[3]|max_length[50]',
             'tlp' => 'required|max_length[200]',
+            'alamat' => 'required|max_length[60]',
             'username'      => 'required|min_length[5]|max_length[50]|is_unique[user.username]',
             'role'          => 'required',
             'password'      => 'required|min_length[5]|max_length[200]',
@@ -34,6 +35,7 @@ class Register extends Controller
             $data = [
                 'nama'     => $this->request->getVar('nama'),
                 'tlp'     => $this->request->getVar('tlp'),
+                'alamat'     => $this->request->getVar('alamat'),
                 'role' => $this->request->getVar('role'),
                 'username' => $this->request->getVar('username'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),

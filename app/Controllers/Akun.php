@@ -51,6 +51,12 @@ class Akun extends BaseController
                     'errors' => [
                         'required' => 'No Telepon Harus Diisi.',
                     ]
+                ],
+                'alamat' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Telepon Harus Diisi.',
+                    ]
                 ]
 
 
@@ -65,6 +71,7 @@ class Akun extends BaseController
             'username' => $this->request->getVar('username'),
             'role' => $this->request->getVar('role'),
             'tlp' => $this->request->getVar('tlp'),
+            'alamat' => $this->request->getVar('alamat'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
 
         ]);
@@ -105,12 +112,6 @@ class Akun extends BaseController
                         'required' => 'Username Harus Diisi.',
                     ]
                 ],
-                'password' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Password Harus Diisi.',
-                    ]
-                ],
                 'role' => [
                     'rules' => 'required',
                     'errors' => [
@@ -122,6 +123,12 @@ class Akun extends BaseController
                     'errors' => [
                         'required' => 'No Telepon Harus Diisi.',
                     ]
+                ],
+                'alamat' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Harus Diisi.',
+                    ]
                 ]
 
 
@@ -131,13 +138,21 @@ class Akun extends BaseController
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();
         }
+        $password = $this->request->getVar('password');
+        if ($password == "") {
+            $passwordLama = $this->request->getVar('passwordLama');
+        } else {
+            $passwordLama = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+        }
+
         $this->userModel->save([
             'id_user' => $id_user,
             'nama' => $this->request->getVar('nama'),
             'role' => $this->request->getVar('role'),
             'username' => $this->request->getVar('username'),
             'tlp' => $this->request->getVar('tlp'),
-            password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'alamat' => $this->request->getVar('alamat'),
+            'password' => $passwordLama,
         ]);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('user');

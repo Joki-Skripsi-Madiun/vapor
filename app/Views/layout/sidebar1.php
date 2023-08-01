@@ -88,9 +88,7 @@
                                     <li>
                                         <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"><?= session()->get('nama'); ?></span></a>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="settings.html">Settings</a>
-                                            <a class="dropdown-item" href="help.html">Help</a>
+                                            <a class="dropdown-item" href="setting/<?= session()->get('id_user') ?>">Setting</a>
                                             <a class="dropdown-item" href="<?= base_url(); ?>/logout"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                         </div>
                                     </li>

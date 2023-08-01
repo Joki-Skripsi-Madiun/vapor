@@ -43,9 +43,9 @@
                                                 <div class="col-12">
                                                     <label for="exampleInputEmail1" class="form-label">Pembayaran</label>
                                                     <select class="form-control" name="id_pembayaran">
-                                                        <option value="<?= (old('id_pembayaran')) ? old('id_pembayaran') : $jointransaksi[0]['id_pembayaran']; ?>" selected><?= (old('nama_pembayaran')) ? old('nama_pembayaran') : $jointransaksi[0]['nama_pembayaran']; ?></option>
+                                                        <option value="<?= (old('id_pembayaran')) ? old('id_pembayaran') : $jointransaksi[0]['id_pembayaran']; ?>" selected><?= (old('nama_pembayaran')) ? old('nama_pembayaran') : $jointransaksi[0]['nama_pembayaran']; ?> - <?= (old('nomer')) ? old('nomer') : $jointransaksi[0]['nomer']; ?></option>
                                                         <?php foreach ($pembayaran as $p) : ?>
-                                                            <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?></option>
+                                                            <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?> - <?= $p['nomer'] ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
@@ -63,8 +63,38 @@
                                                     <input type="hidden" name="id_user" value="<?= $jointransaksi[0]['id_user']; ?>">
                                                 <?php } ?>
                                                 <div class="col-12">
-                                                    <label for="merk" class="form-label">Nama Pembayaran</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Pengiriman</label>
+                                                    <select class="form-control" name="ekspedisi">
+                                                        <option value="<?= (old('ekspedisi')) ? old('ekspedisi') : $jointransaksi[0]['ekspedisi']; ?>" selected><?= (old('ekspedisi')) ? old('ekspedisi') : $jointransaksi[0]['ekspedisi']; ?></option>
+
+                                                        <option value="JNE">JNE - COD</option>
+                                                        <option value="J&T">J&T - COD</option>
+                                                        <option value="Ambil di Toko">Ambil di Toko</option>
+
+                                                    </select>
+                                                </div>
+                                                <?php if (session()->get('role') == 1) { ?>
+                                                    <div class="col-12">
+                                                        <label for="exampleInputEmail1" class="form-label">No Resi</label>
+                                                        <input class="form-control" type="text" name="no_resi" value="<?= $jointransaksi[0]['no_resi']; ?>">
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <input type="hidden" name="no_resi" value="<?= $jointransaksi[0]['no_resi']; ?>">
+                                                <?php } ?>
+                                                <div class="col-12">
+                                                    <label for="merk" class="form-label">Keterangan</label>
                                                     <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"><?= (old('keterangan')) ? old('keterangan') : $transaksi['keterangan']; ?></textarea>
+
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="merk" class="form-label">Upload Bukti Pembayaran</label>
+                                                    <input type="hidden" name="oldfoto" value="<?= $jointransaksi[0]['bukti_pembayaran']; ?>">
+                                                    <input type="file" name="bukti_pembayaran" value="<?= $jointransaksi[0]['bukti_pembayaran']; ?>" class="form-control" id="inputAddress" placeholder="Bukti Pembayaran">
+
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="merk" class="form-label">Bukti Pembayaran</label><br>
+                                                    <img src="<?php echo base_url(); ?>/img/<?= $jointransaksi[0]['bukti_pembayaran'] ?>" width="100">
 
                                                 </div>
 

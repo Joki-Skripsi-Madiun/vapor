@@ -38,6 +38,10 @@
                                                     <label for="merk" class="form-label">No Telepon</label>
                                                     <input type="text" name="tlp" value="<?= old('tlp') ?>" class="form-control" id="inputAddress" placeholder="No Telepon">
                                                 </div>
+                                                <div class="col-12">
+                                                    <label for="merk" class="form-label">Alamat</label>
+                                                    <input type="text" name="alamat" value="<?= old('alamat') ?>" class="form-control" id="inputAddress" placeholder="Alamat">
+                                                </div>
                                                 <br>
                                                 <div class="col-12">
                                                     <label for="exampleInputEmail1" class="form-label">Role</label>

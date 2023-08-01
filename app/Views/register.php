@@ -61,8 +61,12 @@
                                 <label class="label_field">No Telepon</label>
                                 <input type="text" name="tlp" placeholder="no Telepon" />
                             </div>
-
                             <div class="field">
+                                <label class="label_field">Alamat</label>
+                                <input type="text" name="alamat" placeholder="alamat" />
+                            </div>
+                            <input type="hidden" name="role" value="2">
+                            <!-- <div class="field">
                                 <label class="label_field">Role</label>
                                 <select name="role">
                                     <option selected>Open this select menu</option>
@@ -71,7 +75,7 @@
                                     <option value="2">Pembeli</option>
 
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="field">
                                 <label class="label_field">Username</label>
                                 <input type="text" name="username" placeholder="Username" />

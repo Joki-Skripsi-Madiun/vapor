@@ -66,6 +66,11 @@
                                                         <td style="text-align: center;">
                                                             <a href="/transaksi/edit/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fa fa-edit"></i> Ubah</a>
                                                             <a href="/transaksi/detail/<?= $t['id_transaksi']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fa fa-eye text-white"></i> Detail</a>
+                                                            <?php if (session()->get('role') == 1) { ?>
+                                                                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="https://api.whatsapp.com/send?phone=62<?= $t['tlp']; ?>&text=Hallo admin, ini saya telah menerima pesanan anda mohon ditunggu proses selanjutnya"><i class="fa fa-whatsapp"></i> Hubungi Pembeli </a>
+                                                            <?php } else { ?>
+                                                                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="https://api.whatsapp.com/send?phone=626285748637242&text=Hallo admin, ini saya telah melakukan pembelian mohon konfirmasinya"><i class="fa fa-whatsapp"></i> Hubungi Admin </a>
+                                                            <?php } ?>
                                                             <form action="/transaksi/<?= $t['id_transaksi']; ?>" method="post" class="d-inline">
                                                                 <?= csrf_field(); ?>
                                                                 <input type="hidden" name="_method" value="DELETE">

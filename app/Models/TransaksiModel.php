@@ -8,7 +8,7 @@ class TransaksiModel extends Model
 {
     protected $table      = 'transaksi';
     protected $primaryKey = 'id_transaksi';
-    protected $allowedFields = ['id_barang',  'id_pembayaran', 'id_user', 'tgl', 'keterangan'];
+    protected $allowedFields = ['id_barang',  'id_pembayaran', 'id_user', 'tgl', 'ekspedisi', 'no_resi', 'keterangan', 'bukti_pembayaran'];
     // protected $useTimestamps = true;
 
 

@@ -9,31 +9,33 @@ class Setting extends BaseController
 
     public function edit($id_user)
     {
-        $tb_users = $this->datausersModel->getUsers($id_user);
+        $tb_users = $this->userModel->getUser($id_user);
         if (empty($tb_users)) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Tidak ditemukan !');
         }
         $data = [
 
             'validation' => \Config\Services::validation(),
-            'tb_users' => $this->datausersModel->getusers($id_user),
+            'user' => $this->userModel->getUser($id_user),
         ];
         return view('setting', $data);
     }
     public function update($id_user)
     {
-        $this->datausersModel->save([
+        $password = $this->request->getVar('password');
+        if ($password == "") {
+            $passwordLama = $this->request->getVar('passwordLama');
+        } else {
+            $passwordLama = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+        }
+
+        $this->userModel->save([
             'id_user' => $id_user,
             'nama' => $this->request->getVar('nama'),
-            'no_induk' => $this->request->getVar('no_induk'),
-            'kelas' => $this->request->getVar('kelas'),
-            'alamat' => $this->request->getVar('alamat'),
-            'no_hp' => $this->request->getVar('no_hp'),
-            'email' => $this->request->getVar('email'),
             'username' => $this->request->getVar('username'),
-            'password' => $this->request->getVar('password'),
-            'foto' => $this->request->getVar('foto'),
-
+            'tlp' => $this->request->getVar('tlp'),
+            'alamat' => $this->request->getVar('alamat'),
+            'password' => $passwordLama,
         ]);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('dashboard');

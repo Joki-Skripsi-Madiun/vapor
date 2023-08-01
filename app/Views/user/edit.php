@@ -51,6 +51,10 @@
                                                         <input type="text" name="tlp" value="<?= (old('tlp')) ? old('tlp') : $user['tlp']; ?>" class="form-control" id="inputAddress" placeholder="No Telepon">
                                                     </div>
                                                     <div class="col-12">
+                                                        <label for="alamat" class="form-label">Alamat</label>
+                                                        <input type="text" name="alamat" value="<?= (old('alamat')) ? old('alamat') : $user['alamat']; ?>" class="form-control" id="inputAddress" placeholder="Alamat">
+                                                    </div>
+                                                    <div class="col-12">
                                                         <label for="merk" class="form-label">Username</label>
                                                         <input type="text" name="username" value="<?= (old('username')) ? old('username') : $user['username']; ?>" class="form-control" id="inputAddress" placeholder="Username">
                                                     </div>
@@ -66,7 +70,8 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <label for="merk" class="form-label">Password</label>
-                                                        <input type="password" name="password" class="form-control" id="inputAddress" value="<?= (old('password')) ? old('password') : $user['password']; ?>" placeholder="Password">
+                                                        <input type="password" name="password" class="form-control" id="inputAddress" value="" placeholder="Password">
+                                                        <input type="hidden" name="passwordLama" class="form-control" id="inputAddress" value="<?= (old('password')) ? old('password') : $user['password']; ?>" placeholder="Password">
                                                     </div>
 
 

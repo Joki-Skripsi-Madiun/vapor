@@ -60,7 +60,8 @@ class Barang extends BaseController
 
         )) {
             return redirect()->to('/barang')->withInput();
-        } // ambil gambar
+        }
+        // ambil gambar
         $fileFoto = $this->request->getFile('foto');
 
         //apakah tidak ada gambar yang diupload

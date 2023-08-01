@@ -21,7 +21,7 @@
                     <div class="dark_bg full margin_bottom_30">
                         <div class="full graph_head">
                             <div class="heading1 margin_0">
-                                <h2>Edit Data</h2>
+                                <h2>Detail Data</h2>
                             </div>
                             <?php if (!empty(session()->getFlashdata('error'))) : ?>
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -42,17 +42,28 @@
                                             <form class="row g-3" action="/transaksi/update/<?= $transaksi['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
                                                 <div class="col-12">
                                                     <label for="exampleInputEmail1" class="form-label">Pembayaran</label>
-                                                    <select class="form-control" name="id_pembayaran">
+                                                    <select disabled class="form-control" name="id_pembayaran">
                                                         <option value="<?= (old('id_pembayaran')) ? old('id_pembayaran') : $jointransaksi[0]['id_pembayaran']; ?>" selected><?= (old('nama_pembayaran')) ? old('nama_pembayaran') : $jointransaksi[0]['nama_pembayaran']; ?></option>
                                                         <?php foreach ($pembayaran as $p) : ?>
                                                             <option value="<?= $p['id_pembayaran'] ?>"><?= $p['nama_pembayaran'] ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
+                                                <div class="col-12">
+                                                    <label for="exampleInputEmail1" class="form-label">Ekspedisi</label>
+                                                    <select disabled class="form-control" name="ekspedisi">
+                                                        <option value="<?= (old('ekspedisi')) ? old('ekspedisi') : $jointransaksi[0]['ekspedisi']; ?>" selected><?= (old('ekspedisi')) ? old('ekspedisi') : $jointransaksi[0]['ekspedisi']; ?></option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="exampleInputEmail1" class="form-label">No Resi</label>
+                                                    <input disabled type="text" class="form-control" value="<?= (old('no_resi')) ? old('no_resi') : $jointransaksi[0]['no_resi']; ?>">
+                                                </div>
                                                 <?php if (session()->get('role') == 1) { ?>
                                                     <div class="col-12">
                                                         <label for="exampleInputEmail1" class="form-label">Pembeli</label>
-                                                        <select class="form-control" name="id_user">
+                                                        <select disabled class="form-control" name="id_user">
                                                             <option value="<?= (old('id_user')) ? old('id_user') : $jointransaksi[0]['id_user']; ?>" selected><?= (old('nama')) ? old('nama') : $jointransaksi[0]['nama']; ?></option>
                                                             <?php foreach ($user as $u) : ?>
                                                                 <option value="<?= $u['id_user'] ?>"><?= $u['nama'] ?></option>
@@ -64,8 +75,12 @@
                                                 <?php } ?>
                                                 <div class="col-12">
                                                     <label for="merk" class="form-label">Nama Pembayaran</label>
-                                                    <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"><?= (old('keterangan')) ? old('keterangan') : $transaksi['keterangan']; ?></textarea>
+                                                    <textarea disabled name="keterangan" class="form-control" id="" cols="30" rows="5"><?= (old('keterangan')) ? old('keterangan') : $transaksi['keterangan']; ?></textarea>
 
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="merk" class="form-label">Bukti Pembayaran</label><br>
+                                                    <img src="<?php echo base_url(); ?>/img/<?= $jointransaksi[0]['bukti_pembayaran']; ?>" width="100" alt="<?= $jointransaksi[0]['bukti_pembayaran']; ?>">
                                                 </div>
                                             </form>
                                         </div>
@@ -79,7 +94,7 @@
                     <div class="dark_bg full margin_bottom_30">
                         <div class="full graph_head">
                             <div class="heading1 margin_0">
-                                <h2>Edit Data</h2>
+                                <h2>Daftar Barang</h2>
                             </div>
                             <?php if (!empty(session()->getFlashdata('error'))) : ?>
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
