@@ -60,7 +60,7 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <label for="merk" class="form-label">Password</label>
-                                                        <input type="password" name="password" class="form-control" id="inputAddress" value="" placeholder="Password">
+                                                        <input type="password" name="password" class="form-control">
                                                         <input type="hidden" name="passwordLama" class="form-control" id="inputAddress" value="<?= (old('password')) ? old('password') : $user['password']; ?>" placeholder="Password">
                                                     </div>
 
